@@ -26,5 +26,5 @@ jobs:
         
     - name: build project
       run: |
-        qmake -o Makefile Paint.pro
+        qmake -o Makefile Minesweaper.pro
         make
