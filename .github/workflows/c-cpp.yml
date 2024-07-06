@@ -1,0 +1,30 @@
+
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps: 
+    - uses: actions/checkout@v3
+    - name: Set up Qt
+      uses: jurplel/install-qt-action@v3
+      with:
+        version: 6.4.1
+    - name: Configure project
+      run: | 
+        sudo apt-get update
+        sudo apt-get install qtbase5-dev
+        which qmake
+        
+    - name: build project
+      run: |
+        qmake -o Makefile Paint.pro
+        make
